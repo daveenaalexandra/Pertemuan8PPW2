@@ -2,10 +2,21 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+
+Route::get('/hello', function () {
+    return 'Halo, ini halaman percobaan route!';
+});
+
+Route::get('/admin', function () {
+    return 'Halaman Admin';
+})->middleware(['auth', 'isAdmin']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
