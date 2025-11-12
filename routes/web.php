@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SendEmailController;   
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,3 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/send-mail', [SendEmailController::class, 'index'])->name('send-email');
+Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
